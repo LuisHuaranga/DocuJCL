@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Documentación JCL</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <p>Holi</p>
-    <p>Holi siono</p>
+    <div class="container">
+        <nav class="menu">
+            <ul>
+                <li class="menu-item" data-file="README.md">Introducción</li>
+                <li class="menu-item" data-file="otro-documento.md">Otro Documento</li>
+                <!-- Agrega más elementos de menú según sea necesario -->
+            </ul>
+        </nav>
+        <main id="content">
+            <!-- El contenido Markdown cargado aparecerá aquí -->
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="scripts/app.js"></script>
 </body>
 </html>
