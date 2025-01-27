@@ -1,63 +1,30 @@
-# Proyecto DocuJCL
+# Guía de JCL (Job Control Language)
 
-## Descripción
+## JCL: Definición
 
-Este proyecto tiene como objetivo proporcionar documentación para JCL (Job Control Language) con una interfaz fácil de usar que incluye un menú en el lado derecho para una navegación sencilla.
+### ¿Qué es JCL?
 
-## Estructura del Proyecto
+**<span style="color:green">JCL</span>** es el acrónimo de **<span style="color:blue">Lenguaje de Control de Trabajos</span>** (Job Control Language). Es un conjunto de sentencias que describen cómo deben ejecutarse trabajos en un sistema mainframe. Aunque originalmente estos trabajos se definían mediante fichas perforadas, hoy en día se agrupan en lotes que el sistema **<span style="color:purple">OS/VS2</span>** ejecuta bajo el subsistema **<span style="color:purple">JES2</span>**.
 
-```
-web-project
-├── src
-│   ├── index.html          # Documento HTML principal
-│   ├── styles              # Contiene estilos CSS
-│   │   └── style.css       # Estilos para el diseño y la disposición
-│   ├── scripts             # Contiene archivos JavaScript
-│   │   └── app.js          # Funcionalidad para el menú del lado derecho
-│   └── docs                # Archivos de documentación
-│       ├── jcl             # Documentación específica de JCL
-│       │   └── README.md   # Documentación de JCL en Markdown
-│       └── README.md       # Resumen de la estructura de la documentación
-├── package.json            # Archivo de configuración de npm
-└── README.md               # Resumen del proyecto
-```
+### Información que Proporciona JCL al Sistema
 
-## Características
+- **Información contable**
+- **Nombre y número de programas a ejecutar**
+- **Orden de ejecución**
+- **Ficheros o librerías necesarios**
+- **Soportes y periféricos**
+- **Comentarios y mensajes al operador de consola**
+- **Otros...**
 
-- Menú en el lado derecho para la navegación
-- Documentación en formato Markdown para JCL
-- Diseño responsivo para varios dispositivos
+## Ciclo de Ejecución de un Proceso Batch
 
-## Instalación
+| **<span style="color:red">Etapa</span>** | **<span style="color:red">Descripción</span>**                                                                                                                                                  |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **<span style="color:green">Entrada</span>**     | Se envía un trabajo al <span style="color:blue">JES</span> para su ejecución. Se identifica con un nombre y número. Las sentencias de <span style="color:blue">JCL</span> se introducen en un fichero <span style="color:blue">SPOOL</span> en cola de entrada. |
+| **<span style="color:green">Conversión</span>**  | Verificación sintáctica, revisión de existencia de ficheros y librerías, aportación de datos de procedimientos del sistema, y traspaso a la cola de ejecución. |
+| **<span style="color:green">Ejecución</span>**   | El trabajo se carga en un <span style="color:blue">iniciador</span> y se ejecuta según orden de prioridades, asociando clases a subsistemas o elementos físicos de hardware.                   |
+| **<span style="color:green">Salida</span>**      | Se da formato de salida al trabajo ejecutado y se pasa a colas de salida.                                                                                     |
+| **<span style="color:green">Impresión</span>**   | Se especifica la clase de salida: impresión en impresoras, visualización en terminales, o almacenamiento en distintos medios permitidos por el sistema.      |
+| **<span style="color:green">Borrado</span>**     | El trabajo finalizado se borra del control de <span style="color:blue">JES</span>.                                                                                                             |
 
-Para instalar el proyecto, sigue estos pasos:
-
-1. Clona el repositorio:
-    ```bash
-    git clone https://github.com/usuario/proyecto.git
-    ```
-2. Instala las dependencias:
-    ```bash
-    npm install
-    ```
-
-## Uso
-
-Para usar el proyecto, ejecuta el siguiente comando:
-```bash
-npm start
-```
-
-## Contribuir
-
-Si deseas contribuir, por favor sigue estos pasos:
-
-1. Haz un fork del repositorio.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`).
-4. Sube tus cambios (`git push origin feature/nueva-funcionalidad`).
-5. Abre un Pull Request.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo [LICENSE](LICENSE).
+*Nota*: Un error en cualquier etapa provoca una finalización anormal del trabajo (**<span style="color:red">JCL ERROR</span>** para errores sintácticos o de validación, **<span style="color:red">ABEND</span>** para errores en tiempo de ejecución). La finalización correcta se indica como **<span style="color:green">ENDED</span>**.
