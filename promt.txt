@@ -1,1 +1,1 @@
-Por favor, explica el siguiente contenido de manera más clara y detallada. Utiliza tablas y ejemplos para facilitar la comprensión. Proporciona un solo código en formato Markdown al final.
+Por favor, explica el siguiente contenido de manera más clara y detallada (añade informacion veridica complementaria). Utiliza tablas y ejemplos para facilitar la comprensión. Y genera un código en formato Markdown:
